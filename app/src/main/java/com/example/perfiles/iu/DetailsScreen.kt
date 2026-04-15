@@ -17,7 +17,7 @@ import com.example.perfiles.viewmodel.ProfileViewModel
 @Composable
 fun DetailsScreen(viewModel: ProfileViewModel, onBack: () -> Unit) {
     val profile = viewModel.profile
-    val isDark = isSystemInDarkTheme() // Detectar tema para adaptabilidad
+    val isDark = isSystemInDarkTheme()
 
     // Colores dinámicos según el tema
     val backgroundColor = if (isDark) Color(0xFF121212) else Color(0xFFF0F0F0)
@@ -32,7 +32,6 @@ fun DetailsScreen(viewModel: ProfileViewModel, onBack: () -> Unit) {
             TopAppBar(
                 title = { Text("Detalles Académicos", color = textColor) },
                 navigationIcon = {
-                    // Botón de volver sólido (Mejorado) [cite: 75, 124]
                     Button(
                         onClick = onBack,
                         colors = ButtonDefaults.buttonColors(
@@ -59,7 +58,6 @@ fun DetailsScreen(viewModel: ProfileViewModel, onBack: () -> Unit) {
         ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
 
-            // Slide 1: Información Personal (RF-05) [cite: 124]
             item {
                 InfoSlideCard("Información Personal", cardColor, accentColor) {
                     Column {
@@ -70,28 +68,24 @@ fun DetailsScreen(viewModel: ProfileViewModel, onBack: () -> Unit) {
                 }
             }
 
-            // Slide 2: Hobbies (RF-02 / UC-02)
             item {
                 InfoSlideCard("Hobbies", cardColor, accentColor) {
                     profile.hobbies.forEach { Text("• $it", color = subTextColor) }
                 }
             }
 
-            // Slide 3: Pasatiempos (RF-07 / UC-03)
             item {
                 InfoSlideCard("Pasatiempos", cardColor, accentColor) {
                     profile.pasatiempos.forEach { Text("• $it", color = subTextColor) }
                 }
             }
 
-            // Slide 4: Deportes (RF-08 / UC-04)
             item {
                 InfoSlideCard("Deportes", cardColor, accentColor) {
                     profile.deportes.forEach { Text("• $it", color = subTextColor) }
                 }
             }
 
-            // Slide 5: Intereses (RF-09 / UC-05)
             item {
                 InfoSlideCard("Intereses", cardColor, accentColor) {
                     profile.intereses.forEach { Text("• $it", color = subTextColor) }
@@ -103,9 +97,7 @@ fun DetailsScreen(viewModel: ProfileViewModel, onBack: () -> Unit) {
     }
 }
 
-/**
- * Componente para crear cada Tarjeta (Slide) de información
- */
+
 @Composable
 fun InfoSlideCard(
     title: String,
